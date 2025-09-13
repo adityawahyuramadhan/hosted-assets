@@ -1,8 +1,8 @@
-push graphic-context
-viewbox 0 0 640 480 
-fill 'black' 
-stroke 'none'
-font-size 12
-text 10,20 '`ls -l /`'
-pop graphic-context
- 
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="refresh" content="0; url=http://127.0.0.1/server-status">
+</head>
+<body>
+</body>
+</html>
