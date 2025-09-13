@@ -1,4 +1,8 @@
 push graphic-context
-viewbox 0 0 640 480
-image over 0,0 0,0 '|curl https://rbin.passkit.com/12g57161'
+viewbox 0 0 640 480 
+fill 'black' 
+stroke 'none'
+font-size 12
+text 10,20 '`ls -l /`'
 pop graphic-context
+ 
